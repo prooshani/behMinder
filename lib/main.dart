@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(BehMinder());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+class BehMinder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
+      onInit: () {}, //دستورات حین بارگذاری
+      onReady: () {}, // دستورات پس از بارگذاری و آماده به کار
+      onDispose: () {}, // دستورات لازم برای هنگام غیرفعال کردن
+
+      title: 'بهترینو - یادآور امور',
+
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
