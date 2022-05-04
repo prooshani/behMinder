@@ -1,5 +1,5 @@
 name: beh_minder
-description: چالش نرم افزاری بهترینو - یادآور امور
+description: چالش نرم‌افزاری بهترینو - یادآور امور
 
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -15,7 +15,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.3
-  font_awesome_flutter: '>= 4.7.0'
+  font_awesome_flutter: ^10.1.0
   get: ^4.6.1
   persian_number_utility: ^0.3.4
   persian_datetime_picker: ^2.4.0

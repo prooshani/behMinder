@@ -1,7 +1,9 @@
-import 'package:beh_minder/screens/appointments_page.dart';
-import 'package:beh_minder/screens/events_page.dart';
-import 'package:beh_minder/screens/home_page.dart';
-import 'package:beh_minder/screens/login_page.dart';
+import 'package:beh_minder/screens/appointments_view.dart';
+import 'package:beh_minder/screens/events_view.dart';
+import 'package:beh_minder/screens/home_view.dart';
+import 'package:beh_minder/screens/login_view.dart';
+import 'package:beh_minder/screens/otp_view.dart';
+import 'package:beh_minder/screens/signup_view.dart';
 import 'package:beh_minder/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +11,8 @@ class AppRoutes {
   static const String splashScreen = '/splashScreen';
   static const String home = '/home';
   static const String login = '/login';
+  static const String signup = '/signup';
+  static const String otp = '/otp';
   static const String appointments = '/appointments';
   static const String events = '/events';
 
@@ -18,16 +22,20 @@ class AppRoutes {
       builder: (context) {
         switch (settings.name) {
           case home:
-            return HomePage();
+            return HomeView();
           case appointments:
-            return AppointmentsPage();
+            return AppointmentsView();
           case events:
-            return EventsPage();
+            return EventsView();
           case splashScreen:
             return SplashScreen();
+          case signup:
+            return SignupView();
+          case otp:
+            return OTPView();
           case login:
           default:
-            return LoginPage();
+            return LoginView();
         }
       },
     );
