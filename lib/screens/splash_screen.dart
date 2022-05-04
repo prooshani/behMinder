@@ -19,7 +19,7 @@ class _State extends State<SplashScreen> {
     //TODO:چنانچه کاربر قبلاً وارد شده است به صفحه خانه منتقل شود
     //TODO:چنانچه کاربر وارد نشده به صفحه‌ی ورود منتقل شود
 
-    Future.delayed(const Duration(seconds: 3)).whenComplete(() => Navigator.pushNamed(context, AppRoutes.login));
+    Future.delayed(const Duration(seconds: 3)).whenComplete(() => Get.toNamed(AppRoutes.login));
   }
 
   Widget build(BuildContext context) {

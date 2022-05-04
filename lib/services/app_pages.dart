@@ -16,7 +16,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.otp,
-      page: () => OTPView(),
+      page: () => OTPView(phoneNumber: '',),
     ),
     GetPage(
       name: AppRoutes.signup,

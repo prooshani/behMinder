@@ -5,7 +5,6 @@ import 'package:beh_minder/services/routes.dart';
 import 'package:beh_minder/tools/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
 import 'package:beh_minder/screens/home_view.dart';
 import 'package:beh_minder/screens/events_view.dart';
 import 'package:beh_minder/screens/login_view.dart';
@@ -41,7 +40,9 @@ class BehMinder extends StatelessWidget {
           SplashScreen.id: (BuildContext context) => SplashScreen(),
           LoginView.id: (BuildContext context) => LoginView(),
           SignupView.id: (BuildContext context) => SignupView(),
-          OTPView.id: (BuildContext context) => OTPView(),
+          OTPView.id: (BuildContext context) => OTPView(
+                phoneNumber: '',
+              ),
           HomeView.id: (BuildContext context) => HomeView(),
           AppointmentsView.id: (BuildContext context) => AppointmentsView(),
           EventsView.id: (BuildContext context) => EventsView(),

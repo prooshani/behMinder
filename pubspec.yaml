@@ -1,6 +1,6 @@
 name: beh_minder
 description: چالش نرم‌افزاری بهترینو - یادآور امور
-
+#Developer: Hamed Prooshani
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -26,7 +26,7 @@ dependencies:
   provider: ^5.0.0
   ndialog: ^4.1.1
   glassmorphism: ^3.0.0
-
+  pin_code_fields: ^7.4.0
 
 dev_dependencies:
   flutter_test:

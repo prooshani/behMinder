@@ -2,7 +2,7 @@ import 'package:beh_minder/tools/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-const kTextFieldDecoration = InputDecoration(
+InputDecoration kTextFieldDecoration = const InputDecoration(
   hintStyle: TextStyle(fontFamily: 'Sahel', color: Colors.white54, fontSize: 15, fontWeight: FontWeight.w500),
   errorStyle: TextStyle(fontFamily: 'Sahel', color: Colors.red, fontSize: 12, fontWeight: FontWeight.w400),
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
@@ -13,34 +13,31 @@ const kTextFieldDecoration = InputDecoration(
   disabledBorder: InputBorder.none,
 );
 
-const kTextFieldEnabledDecoration = InputDecoration(
+InputDecoration kTextFieldEnabledDecoration = InputDecoration(
   fillColor: Colors.transparent,
-  labelStyle: TextStyle(
+  labelStyle: const TextStyle(
     color: Color(0xFF4E4D20),
     fontSize: 17,
   ),
   filled: true,
   hintText: '',
   hintStyle: farsiTextDecorationSahel,
-  contentPadding: EdgeInsets.fromLTRB(
+  contentPadding: const EdgeInsets.fromLTRB(
     15,
     25,
     25,
     15,
   ),
-  errorStyle: TextStyle(
-    color: Colors.redAccent,
-    fontSize: 10,
-  ),
-  border: OutlineInputBorder(
+  errorStyle: farsiTextDecorationSahel.copyWith(fontSize: 12),
+  border: const OutlineInputBorder(
     gapPadding: 5,
     borderRadius: BorderRadius.all(Radius.circular(25.0)),
   ),
-  enabledBorder: OutlineInputBorder(
+  enabledBorder: const OutlineInputBorder(
     borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0),
     borderRadius: BorderRadius.all(Radius.circular(25.0)),
   ),
-  focusedBorder: OutlineInputBorder(
+  focusedBorder: const OutlineInputBorder(
     borderSide: BorderSide(color: Colors.blue, width: 3.0),
     borderRadius: BorderRadius.all(Radius.circular(25.0)),
   ),

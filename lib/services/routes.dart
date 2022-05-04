@@ -32,7 +32,9 @@ class AppRoutes {
           case signup:
             return SignupView();
           case otp:
-            return OTPView();
+            return OTPView(
+              phoneNumber: '',
+            );
           case login:
           default:
             return LoginView();
