@@ -22,7 +22,7 @@ class AppRoutes {
       builder: (context) {
         switch (settings.name) {
           case home:
-            return HomeView();
+            return HomeView(phoneNumber: '', token: '');
           case appointments:
             return AppointmentsView();
           case events:
@@ -34,6 +34,7 @@ class AppRoutes {
           case otp:
             return OTPView(
               phoneNumber: '',
+              keyCode: '',
             );
           case login:
           default:

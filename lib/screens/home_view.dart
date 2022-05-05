@@ -3,10 +3,16 @@ import 'package:beh_minder/screens/controllers/home_controller.dart';
 import 'package:beh_minder/tools/my_widgets.dart';
 import 'package:beh_minder/tools/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 class HomeView extends GetView<HomeViewController> {
   static const String id = 'HomeView';
+
+  final String phoneNumber;
+  final String token;
+
+  HomeView({Key? key, required this.phoneNumber, required this.token}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +24,18 @@ class HomeView extends GetView<HomeViewController> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 10.0, bottom: 30),
-                child: Text(
-                  jalaliDateNow(),
-                  style: farsiTextDecorationVazir.copyWith(fontWeight: FontWeight.w800),
-                  textDirection: TextDirection.ltr,
-                  textAlign: TextAlign.center,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(onPressed: () async {}, icon: const Icon(FontAwesomeIcons.calendarPlus)),
+                    Text(
+                      jalaliDateNow(),
+                      style: farsiTextDecorationVazir.copyWith(fontWeight: FontWeight.w800),
+                      textDirection: TextDirection.ltr,
+                      textAlign: TextAlign.center,
+                    ),
+                    Padding(padding: const EdgeInsets.only(right: 10), child: controller.homeMenu()),
+                  ],
                 ),
               ),
               SingleChildScrollView(

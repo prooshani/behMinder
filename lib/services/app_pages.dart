@@ -16,7 +16,10 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.otp,
-      page: () => OTPView(phoneNumber: '',),
+      page: () => OTPView(
+        phoneNumber: '',
+        keyCode: '',
+      ),
     ),
     GetPage(
       name: AppRoutes.signup,
@@ -24,7 +27,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.home,
-      page: () => HomeView(),
+      page: () => HomeView(phoneNumber: '', token: ''),
       binding: HomeBinding(),
     ),
     GetPage(

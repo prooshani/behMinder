@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:beh_minder/tools/constants.dart';
 import 'package:beh_minder/tools/decorations.dart';
 import 'package:beh_minder/tools/styles.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:ndialog/ndialog.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 void successSnackBar({
   @required String? successTitle,
@@ -70,9 +72,9 @@ void failedSnackBar({
         textAlign: TextAlign.center,
         textDirection: TextDirection.rtl,
         style: farsiTextDecorationSahel.copyWith(
-            color: Colors.white, fontWeight: FontWeight.w500, fontSize: Get.context!.isPhone ? 14 : 20),
+            color: Colors.black, fontWeight: FontWeight.w500, fontSize: Get.context!.isPhone ? 14 : 20),
       ),
-      colorText: Colors.white,
+      colorText: Colors.black,
       leftBarIndicatorColor: Colors.red,
       snackPosition: SnackPosition.BOTTOM,
       duration: Duration(seconds: duration!));
@@ -278,4 +280,74 @@ timeField(
       keyboardType: TextInputType.number,
     ),
   );
+}
+
+Future questionDialog({
+  String confirmBtnTxt = 'بله',
+  String cancelBtnTxt = 'خیر',
+  String? titleTxt,
+  DialogType dialogType = DialogType.WARNING,
+  Widget? content,
+  required void Function() onConfirm,
+  required void Function() onCancel,
+}) async {
+  return await AwesomeDialog(
+    dialogBorderRadius: const BorderRadius.all(Radius.circular(15)),
+    context: Get.context!,
+    width: Get.context!.isPhone ? Get.width * 0.8 : Get.width * 0.6,
+    dialogType: dialogType,
+    headerAnimationLoop: false,
+    padding: EdgeInsets.zero,
+    showCloseIcon: false,
+    dismissOnTouchOutside: true,
+    dismissOnBackKeyPress: true,
+    title: titleTxt,
+    body: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 15.0, right: 15),
+          child: content,
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+              child: DialogButton(
+                  margin: EdgeInsets.zero,
+                  padding: EdgeInsets.zero,
+                  radius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(15),
+                      topLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(0),
+                      topRight: Radius.circular(0)),
+                  color: Colors.redAccent,
+                  onPressed: () async {
+                    onCancel();
+                  },
+                  child: Text(cancelBtnTxt, style: farsiTextDecorationSahel, textDirection: TextDirection.rtl)),
+            ),
+            Expanded(
+              child: DialogButton(
+                  padding: EdgeInsets.zero,
+                  margin: EdgeInsets.zero,
+                  radius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(0),
+                      topLeft: Radius.circular(0),
+                      bottomRight: Radius.circular(15),
+                      topRight: Radius.circular(0)),
+                  color: Colors.lightGreen,
+                  onPressed: () async {
+                    onConfirm();
+                  },
+                  child: Text(confirmBtnTxt, style: farsiTextDecorationSahel, textDirection: TextDirection.rtl)),
+            ),
+          ],
+        ),
+      ],
+    ),
+  ).show();
 }

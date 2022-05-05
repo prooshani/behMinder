@@ -10,8 +10,17 @@ import 'package:beh_minder/screens/events_view.dart';
 import 'package:beh_minder/screens/login_view.dart';
 import 'package:beh_minder/screens/appointments_view.dart';
 import 'package:beh_minder/screens/splash_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+late final SharedPreferences userPrefs;
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //initialize the shared preferences to store user credentials and events locally
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+  userPrefs = await _prefs;
+
   runApp(BehMinder());
 }
 
@@ -34,7 +43,7 @@ class BehMinder extends StatelessWidget {
         onGenerateRoute: AppRoutes.onGenerateRoute,
         initialBinding: HomeBinding(),
         initialRoute: SplashScreen.id,
-        home: HomeView(),
+        home: HomeView(phoneNumber: '', token: ''),
 
         routes: {
           SplashScreen.id: (BuildContext context) => SplashScreen(),
@@ -42,8 +51,9 @@ class BehMinder extends StatelessWidget {
           SignupView.id: (BuildContext context) => SignupView(),
           OTPView.id: (BuildContext context) => OTPView(
                 phoneNumber: '',
+                keyCode: '',
               ),
-          HomeView.id: (BuildContext context) => HomeView(),
+          HomeView.id: (BuildContext context) => HomeView(phoneNumber: '', token: ''),
           AppointmentsView.id: (BuildContext context) => AppointmentsView(),
           EventsView.id: (BuildContext context) => EventsView(),
         },

@@ -79,26 +79,28 @@ class LoginView extends GetView<LoginViewController> {
                 label: 'ارسال',
                 enabled: controller.submitEnabled.value,
                 onPressed: () async {
-                  //TODO: فیلد شماره‌ی تلفن همراه چک شود و درصورتیکه خالی نبود به بخش ارسال کد منتقل شود
-                  if (controller.mobileTextController.text != '') {
-                    Get.to(
-                      () => OTPView(
-                        phoneNumber: controller.mobileTextController.text,
-                      ),
-                    );
+                  var keyCode = await controller.submitUser(username: controller.mobileTextController.text.removeAllWhitespace);
+
+                  if (keyCode != null) {
+                    print('key: $keyCode');
+
                     successSnackBar(
                         successTitle: 'ارسال موفق',
                         successMessage: ' کد ورود برای شماره‌ی ${controller.mobileTextController.text.removeAllWhitespace} '
                             'ارسال شد',
                         duration: 3);
+                    Get.to(
+                      () => OTPView(
+                        phoneNumber: controller.mobileTextController.text,
+                        keyCode: keyCode,
+                      ),
+                    );
                   } else {
                     failedSnackBar(
-                        errorTitle: 'خطا در '
-                            'ارسال کد',
-                        errorMessage: 'لطفاً شماره‌ی تلفن همراه را وارد کنید.',
+                        errorTitle: 'خطا در ارسال کد',
+                        errorMessage: 'لطفاً شماره‌ی تلفن همراه را بررسی و مجدداً تلاش کنید.',
                         duration: 3);
                   }
-                  ;
                 },
               ),
             ),
