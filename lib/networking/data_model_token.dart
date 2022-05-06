@@ -1,7 +1,7 @@
 // To parse this JSON data, do
-//
 //     final dataModelToken = dataModelTokenFromJson(jsonString);
 
+// This is a token dataModel class to encode/decode token we would receive in login procedure
 import 'dart:convert';
 
 DataModelToken dataModelTokenFromJson(String str) => DataModelToken.fromJson(json.decode(str));

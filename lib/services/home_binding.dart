@@ -1,4 +1,4 @@
-import 'package:beh_minder/screens/controllers/appointments_controller.dart';
+import 'package:beh_minder/screens/controllers/new_event_controller.dart';
 import 'package:beh_minder/screens/controllers/events_controller.dart';
 import 'package:beh_minder/screens/controllers/home_controller.dart';
 import 'package:beh_minder/screens/controllers/login_controller.dart';
@@ -13,7 +13,7 @@ class HomeBinding extends Bindings {
     Get.lazyPut<SignupViewController>(() => SignupViewController());
     Get.lazyPut<OTPViewController>(() => OTPViewController());
     Get.lazyPut<HomeViewController>(() => HomeViewController());
-    Get.lazyPut<AppointmentsViewController>(() => AppointmentsViewController());
     Get.lazyPut<EventsViewController>(() => EventsViewController());
+    Get.put(NewEventViewController());
   }
 }

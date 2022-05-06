@@ -1,6 +1,7 @@
 // To parse this JSON data, do
-//
 //     final dataModel = dataModelFromJson(jsonString);
+
+//This the login request data model to encode/decode login json responses
 
 import 'dart:convert';
 

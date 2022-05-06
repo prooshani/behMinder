@@ -29,11 +29,13 @@ class _State extends State<SplashScreen> {
         String phoneNumber = userPrefs.getString('username') ?? '';
         String token = userPrefs.getString('token') ?? '';
 
+        //TODO: retrieve events from prefs and show in home view here
+
+        //Move to home view if a logged in user found
         Future.delayed(const Duration(seconds: 3))
             .whenComplete(() => Get.to(() => HomeView(phoneNumber: phoneNumber, token: token)));
       } else {
         //TODO:چنانچه کاربر وارد نشده به صفحه‌ی ورود منتقل شود
-
         Future.delayed(const Duration(seconds: 3)).whenComplete(() => Get.toNamed(AppRoutes.login));
       }
     } catch (e) {

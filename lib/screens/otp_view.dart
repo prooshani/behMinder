@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:beh_minder/main.dart';
-import 'package:beh_minder/networking/user_verification.dart';
+import 'package:beh_minder/networking/api_networking.dart';
 import 'package:beh_minder/screens/controllers/otp_controller.dart';
 import 'package:beh_minder/screens/home_view.dart';
 import 'package:beh_minder/services/routes.dart';
@@ -10,7 +10,6 @@ import 'package:beh_minder/tools/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class OTPView extends GetView<OTPViewController> {
   static const String id = 'OTPView';
@@ -33,8 +32,9 @@ class OTPView extends GetView<OTPViewController> {
             style: farsiTextDecorationVazir.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: 40),
-          //TODO: // OPT fields here
+          //TODO: // OTP fields here
           SizedBox(
+            //  define different sizes for notepads or phones to make the page view compatible
             width: Get.context!.isPhone
                 ? Get.context!.isPortrait
                     ? Get.width * 0.7
@@ -114,6 +114,8 @@ class OTPView extends GetView<OTPViewController> {
                     failedSnackBar(errorTitle: 'خطا در تائید کد', errorMessage: 'کد تائید وارد شده صحیح نمی‌باشد.', duration: 3);
                   }
                 },
+                //  define different sizes for notepads or phones to make the page view compatible
+
                 maxWidth: Get.context!.isPhone
                     ? Get.context!.isPortrait
                         ? Get.width * 0.7
@@ -124,6 +126,7 @@ class OTPView extends GetView<OTPViewController> {
                 label: 'تائید',
                 enabled: controller.submitEnabled.value),
           ),
+          //  define different sizes for notepads or phones to make the page view compatible
 
           SizedBox(
             width: Get.context!.isPhone

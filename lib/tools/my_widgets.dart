@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:ndialog/ndialog.dart';
+import 'package:numberpicker/numberpicker.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -80,7 +81,8 @@ void failedSnackBar({
       duration: Duration(seconds: duration!));
 }
 
-Widget myElevatedButton({String? label, double? maxWidth, required Function() onPressed, bool enabled = true}) {
+Widget myElevatedButton(
+    {String? label, double? maxWidth, required Function() onPressed, bool enabled = true, double borderRadius = 25}) {
   return GestureDetector(
     onTap: enabled
         ? () {
@@ -91,8 +93,8 @@ Widget myElevatedButton({String? label, double? maxWidth, required Function() on
       width: maxWidth,
       height: 60,
       decoration: BoxDecoration(
-        borderRadius: const BorderRadius.all(
-          Radius.circular(25),
+        borderRadius: BorderRadius.all(
+          Radius.circular(borderRadius),
         ),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -350,4 +352,63 @@ Future questionDialog({
       ],
     ),
   ).show();
+}
+
+myNumberPicker(
+    {required int? minVal,
+    required int? maxVal,
+    required RxInt? numberValue,
+    double? pickerWidth = 20,
+    double? fieldWidth = 100,
+    bool? zeroPadding = false}) {
+  return Container(
+    padding: EdgeInsets.zero,
+    width: fieldWidth,
+    height: 45,
+    decoration: BoxDecoration(
+      color: Colors.transparent,
+      borderRadius: const BorderRadius.all(
+        Radius.circular(10),
+      ),
+      border: Border.all(color: Colors.purple.shade800),
+    ),
+    child: Row(
+      textDirection: TextDirection.rtl,
+      children: [
+        IconButton(
+          padding: EdgeInsets.zero,
+          onPressed: () {
+            if (numberValue! < maxVal!) {
+              numberValue = numberValue! + 1;
+            }
+          },
+          icon: const Icon(FontAwesomeIcons.angleRight, color: Color(0xFF709CFF)),
+        ),
+        Obx(
+          () => NumberPicker(
+            axis: Axis.horizontal,
+            minValue: minVal!,
+            maxValue: maxVal!,
+            value: numberValue!.value,
+            onChanged: (value) => numberValue!.value = value,
+            itemWidth: pickerWidth!,
+            step: 1,
+            zeroPad: zeroPadding!,
+            textStyle: farsiTextDecorationVazir.copyWith(color: Colors.blue.shade300, fontSize: 10),
+            selectedTextStyle:
+                farsiTextDecorationVazir.copyWith(fontSize: 15, fontWeight: FontWeight.w600, color: Colors.blueAccent.shade700),
+          ),
+        ),
+        IconButton(
+          padding: EdgeInsets.zero,
+          onPressed: () {
+            if (numberValue! > minVal!) {
+              numberValue = numberValue! - 1;
+            }
+          },
+          icon: const Icon(FontAwesomeIcons.angleLeft, color: Color(0xFF709CFF)),
+        ),
+      ],
+    ),
+  );
 }

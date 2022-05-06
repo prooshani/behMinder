@@ -8,18 +8,21 @@ import 'package:get/get.dart';
 import 'package:beh_minder/screens/home_view.dart';
 import 'package:beh_minder/screens/events_view.dart';
 import 'package:beh_minder/screens/login_view.dart';
-import 'package:beh_minder/screens/appointments_view.dart';
+import 'package:beh_minder/screens/new_event_view.dart';
 import 'package:beh_minder/screens/splash_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 late final SharedPreferences userPrefs;
+late final SharedPreferences eventPrefs;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //initialize the shared preferences to store user credentials and events locally
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  final Future<SharedPreferences> _userPrefs = SharedPreferences.getInstance();
+  final Future<SharedPreferences> _eventPrefs = SharedPreferences.getInstance();
 
-  userPrefs = await _prefs;
+  userPrefs = await _userPrefs;
+  eventPrefs = await _eventPrefs;
 
   runApp(BehMinder());
 }
@@ -54,7 +57,11 @@ class BehMinder extends StatelessWidget {
                 keyCode: '',
               ),
           HomeView.id: (BuildContext context) => HomeView(phoneNumber: '', token: ''),
-          AppointmentsView.id: (BuildContext context) => AppointmentsView(),
+          NewEventView.id: (BuildContext context) => NewEventView(
+                phoneNumber: '',
+                token: '',
+                selectedTime: const [0, 0],
+              ),
           EventsView.id: (BuildContext context) => EventsView(),
         },
       ),

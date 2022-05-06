@@ -7,17 +7,31 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
-import 'package:ndialog/ndialog.dart';
+import 'package:linked_scroll_controller/linked_scroll_controller.dart';
+
+// This is home controller which extends GetX controller view and will hold variables and controllers we are using in our
+// homePage (Appointments calendar view)
 
 class HomeViewController extends GetxController {
-  String? selectedValue;
+  String? selectedValue; // keep selected menu item the user have been selected
 
-  List<String> menuItems = [
-    'رویدادها',
-    'رویداد جدید',
-    'تنظیمات',
-    'خروج',
-  ];
+  RxInt selectedIndex = 0.obs; // used to keep calendar section the user have been tapped in calendar timeline view
+
+  Rx<ScrollController?> fieldListScroller = ScrollController().obs; // scrollController for timelineField (left side)
+  Rx<ScrollController?> timeListScroller = ScrollController().obs; //ScrolController for time numbers (right side)
+  Rx<LinkedScrollControllerGroup?> scrollControllers = LinkedScrollControllerGroup().obs; // to sync the scroll of left and
+  // right panels of timeline
+
+  @override
+  void onInit() async {
+    //method to add scroller controllers to synced one to use as a single controller for the timeline
+    fieldListScroller.value = scrollControllers.value?.addAndGet();
+    timeListScroller.value = scrollControllers.value?.addAndGet();
+//TODO: Scroll to current time here
+    super.onInit();
+  }
+
+// Here is the menu Widget for topRight menu in the home view
 
   homeMenu() {
     return DropdownButtonHideUnderline(
@@ -30,6 +44,7 @@ class HomeViewController extends GetxController {
               child: MenuItems.buildItem(item),
             ),
           ),
+          //here we can split menu items into 2 groups for better user experience
           ...MenuItems.secondItems.map(
             (item) => DropdownMenuItem<MenuItem>(
               value: item,
@@ -68,6 +83,7 @@ class HomeViewController extends GetxController {
   }
 }
 
+// A class to generate homeMenu's Items
 class MenuItem {
   final String text;
   final IconData icon;
@@ -78,6 +94,7 @@ class MenuItem {
   });
 }
 
+// Create ListItems for the homeMenu Items' list
 class MenuItems {
   static const List<MenuItem> firstItems = [events, newEvent, settings];
   static const List<MenuItem> secondItems = [logout];
@@ -102,19 +119,20 @@ class MenuItems {
     );
   }
 
+  // When the user select an item from the homeMenu list, this function would call to take care of that.
   static onChanged(BuildContext context, MenuItem item) async {
     switch (item) {
       case MenuItems.events:
-        //Do something
+        //TODO: open a list of events here
         break;
       case MenuItems.settings:
-        //Do something
+        //TODO: app settings like dark mode & ... here
         break;
       case MenuItems.newEvent:
-        //Do something
+        //TODO: call for new event page here
         break;
       case MenuItems.logout:
-        //TODO: pop a dialog to ask if the user really wants to log out
+        //Tpop a dialog to ask if the user really wants to log out or it is happened unintended
         await questionDialog(
             dialogType: DialogType.QUESTION,
             content: Padding(

@@ -1,4 +1,4 @@
-import 'package:beh_minder/screens/appointments_view.dart';
+import 'package:beh_minder/screens/new_event_view.dart';
 import 'package:beh_minder/screens/events_view.dart';
 import 'package:beh_minder/screens/home_view.dart';
 import 'package:beh_minder/screens/login_view.dart';
@@ -35,8 +35,12 @@ class AppPages {
       page: () => EventsView(),
     ),
     GetPage(
-      name: AppRoutes.appointments,
-      page: () => AppointmentsView(),
+      name: AppRoutes.newEvent,
+      page: () => NewEventView(
+        phoneNumber: '',
+        token: '',
+        selectedTime: const [0, 0],
+      ),
     ),
   ];
 }

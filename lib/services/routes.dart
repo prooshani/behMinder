@@ -1,4 +1,4 @@
-import 'package:beh_minder/screens/appointments_view.dart';
+import 'package:beh_minder/screens/new_event_view.dart';
 import 'package:beh_minder/screens/events_view.dart';
 import 'package:beh_minder/screens/home_view.dart';
 import 'package:beh_minder/screens/login_view.dart';
@@ -13,7 +13,7 @@ class AppRoutes {
   static const String login = '/login';
   static const String signup = '/signup';
   static const String otp = '/otp';
-  static const String appointments = '/appointments';
+  static const String newEvent = '/newEvent';
   static const String events = '/events';
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -23,8 +23,12 @@ class AppRoutes {
         switch (settings.name) {
           case home:
             return HomeView(phoneNumber: '', token: '');
-          case appointments:
-            return AppointmentsView();
+          case newEvent:
+            return NewEventView(
+              phoneNumber: '',
+              token: '',
+              selectedTime: const [0, 0],
+            );
           case events:
             return EventsView();
           case splashScreen:
